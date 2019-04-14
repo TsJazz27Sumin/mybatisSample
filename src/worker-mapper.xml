@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+  "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.mybatis.java.dao.mapper.WorkerMapper">
+  <resultMap id="workerResultMap" type="sample.mybatis.java.model.Worker">
+  	<result property="id" column="id" />
+  	<result property="name" column="name" />
+ 	<result property="age" column="age" />
+ 	<result property="department" column="department" />
+  </resultMap>
+  <select id="selectAll" resultMap="workerResultMap">
+    select * from worker
+  </select>
+  <insert id="insert" parameterType="sample.mybatis.java.model.Worker">
+    insert into worker
+    values (
+      #{id},
+      #{name},
+      #{age},
+      #{department}
+    )
+  </insert>
+  <update id="update" parameterType="sample.mybatis.java.model.Worker">
+    update worker
+    set name = #{name},
+        age = #{age},
+        department = #{department}
+    where id =  #{id}
+  </update>
+  <delete id="delete" parameterType="sample.mybatis.java.model.Worker">
+    delete from worker
+    where id = #{id}
+  </delete>
+</mapper>
